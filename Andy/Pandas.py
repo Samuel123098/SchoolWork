@@ -2,13 +2,23 @@ import pandas as pd
 
 
 
-Car_Panda = {
-    "Car": ['bmw', 'audi', 'ford'],
-    "Licence": ['Okhn89','L098hg','KJHg32'], 
-    "People": [2, 3, 4],
-    "Driver": ['John', 'Doe', 'Smith']}
-df = pd.DataFrame(Car_Panda, index = ["Person1", "Person2", "Person3"])
+df = pd.read_csv('/Users/san/Documents/GitHub/SchoolWork/Andy/cars.csv', index_col=0)
+new_car = input("Enter car brand: ")
+new_licence = input("Enter licence plate: ")
+new_people = int(input("Enter number of people: "))
+new_driver = input("Enter driver's name: ")
 
-myvar = pd.DataFrame(Car_Panda)
+new_data = {
+    "Car": new_car,
+    "Licence": new_licence,
+    "People": new_people,
+    "Driver": new_driver
+}
 
-print(myvar.loc[0])
+df.loc[f"Person{len(df) + 1}"] = new_data.values()
+
+df.to_csv('/Users/san/Documents/GitHub/SchoolWork/Andy/cars.csv', index=True)
+
+
+
+print(df)
